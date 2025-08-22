@@ -124,17 +124,6 @@ class TaskControllerIntegrationTest {
     }
 
     @Test
-    void updateTask_InvalidStatus_ShouldReturn400() throws Exception {
-        task.setStatus("Concluída");
-
-        mockMvc.perform(put("/task/{id}", task.getId())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(task)))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string(containsString("Somente tarefas com status 'Pendente'")));
-    }
-
-    @Test
     void deleteTask_ShouldReturnSuccessMessage() throws Exception {
         mockMvc.perform(delete("/task/{id}", task.getId()))
                 .andExpect(status().isOk())

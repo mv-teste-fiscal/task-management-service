@@ -40,7 +40,7 @@ public class TaskService {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException(id));
 
-        if (!taskUpdated.getStatus().equals("Pendente") && !taskUpdated.getStatus().equals("Em Andamento")) {
+        if (!task.getStatus().equals("Pendente") && !task.getStatus().equals("Em Andamento")) {
             throw new InvalidTaskStatusException(task.getStatus());
         }
 
